@@ -8,4 +8,24 @@
         <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
         <function-signature>String capitalize(java.lang.String)</function-signature>
     </function>
+    
+    <function>
+        <name>toUpperCase</name>
+        <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
+        <function-signature>String toUpperCase(java.lang.String)</function-signature>
+    </function>
+    
+    <function>
+        <name>stripeToCurrency</name>
+        <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
+        <function-signature>String stripeToCurrency(java.lang.String, java.lang.String)</function-signature>
+    </function>
+    
+    <function>
+        <name>printString</name>
+        <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
+        <function-signature>String printString(java.lang.String)</function-signature>
+    </function>
+    
+    
 </taglib>

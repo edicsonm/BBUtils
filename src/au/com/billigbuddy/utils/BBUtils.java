@@ -12,8 +12,19 @@ public class BBUtils {
 	
 	public static ConfigurationApplication configurationApplication = ConfigurationApplication.getInstance();
 	
+	public static String printString(String value){
+		if(value != null) return value;
+		return "";
+    }
+	
 	public static String capitalize(String value){
-		return String.valueOf(value.charAt(0)).toUpperCase() + value.substring(1);
+		if(value != null && value.length() > 0) return String.valueOf(value.charAt(0)).toUpperCase() + value.substring(1);
+		return "";
+    }
+	
+	public static String toUpperCase(String value){
+		if(value != null && value.length() > 0) return value.toUpperCase();
+		return "";
     }
 	
 	public static String nullOrEmptyWithDefaulValue(String value){
@@ -31,15 +42,19 @@ public class BBUtils {
 	}
 	
 	public static String currencyToStripe(String amount, String currency) {
-		int decimalValue = Integer.parseInt(configurationApplication.getKey("currency."+currency));
+		int decimalValue = Integer.parseInt(configurationApplication.getKey("currency."+currency.toUpperCase()));
 		return new DecimalFormat("#0").format(Double.parseDouble(amount) * decimalValue);
 	}
 	
 	public static String stripeToCurrency(String amount, String currency) {
 		try {
-			int decimalValue = Integer.parseInt(configurationApplication.getKey("currency."+currency));
-			return String.valueOf(Double.parseDouble(amount) / decimalValue);
-		} catch (MissingResourceException e) {
+			if(amount != null && Double.parseDouble(amount) > 0){
+				int decimalValue = Integer.parseInt(configurationApplication.getKey("currency."+currency.toUpperCase()));
+				return String.valueOf(Double.parseDouble(amount) / decimalValue);
+			}else{
+				return "0";
+			}
+		} catch (MissingResourceException | NullPointerException e) {
 			e.printStackTrace();
 		} 
 		return configurationApplication.getKey("currency.imposibleFormatAmount");
@@ -59,8 +74,7 @@ public class BBUtils {
 		if(val)return "0";
 		return "1";
 	}
-	
-	
+		
 	public static String getCurrentDate(int format){
 		return getDateFormat(format).format(Calendar.getInstance().getTime()); 
 	}
