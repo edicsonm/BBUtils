@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.MissingResourceException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class BBUtils {
@@ -74,7 +76,16 @@ public class BBUtils {
 		if(val)return "0";
 		return "1";
 	}
-		
+	
+	public static String formatDate(int inputFormat, String date, int outputFormat){
+		try {
+			return (getDateFormat(outputFormat).format(getDateFormat(inputFormat).parse(date))).trim();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 
+		return date;
+	}
+	
 	public static String getCurrentDate(int format){
 		return getDateFormat(format).format(Calendar.getInstance().getTime()); 
 	}
@@ -113,6 +124,17 @@ public class BBUtils {
 			break;
 		}
 		return simpleDateFormat;
+	}
+	
+	public static String printCardNumber(String cardnumber){
+		if(cardnumber == null || cardnumber.isEmpty()) return "";
+		String pattern = "%1$-"+ (cardnumber.length() - 10 )+"s";
+		String cadena = String.format(pattern,"").replaceAll(" ", "*");
+		String MASKCARD = "$1-"+cadena+"-$2";
+		Pattern PATTERNCARD =  Pattern.compile("([0-9]{6})[0-9]{0,9}([0-9]{4})");
+		Matcher matcher = PATTERNCARD.matcher(cardnumber);
+		String maskedMessage = matcher.replaceAll(MASKCARD);
+		return maskedMessage;
 	}
 	
 }
