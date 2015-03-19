@@ -3,11 +3,15 @@ package au.com.billigbuddy.utils;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.MissingResourceException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import au.com.billingbuddy.vo.objects.UserMerchantVO;
 
 
 public class BBUtils {
@@ -135,6 +139,16 @@ public class BBUtils {
 		Matcher matcher = PATTERNCARD.matcher(cardnumber);
 		String maskedMessage = matcher.replaceAll(MASKCARD);
 		return maskedMessage;
+	}
+	
+	public static String configureUserMerchants(ArrayList<UserMerchantVO> listUserMerchants){
+		if(listUserMerchants == null || listUserMerchants.size() == 0) return null;
+		String merchants = "";
+		for (Iterator<UserMerchantVO> iterator = listUserMerchants.iterator(); iterator .hasNext();) {
+			UserMerchantVO userMerchantVO = (UserMerchantVO) iterator.next();
+			merchants += userMerchantVO.getMerchantId() + "," ;
+		}
+		return merchants.substring(0, merchants.length()-1);
 	}
 	
 }
