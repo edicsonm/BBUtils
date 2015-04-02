@@ -82,11 +82,29 @@ public class BBUtils {
 	}
 	
 	public static String formatDate(int inputFormat, String date, int outputFormat){
-		try {
-			return (getDateFormat(outputFormat).format(getDateFormat(inputFormat).parse(date))).trim();
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
+		if(date != null && !date.isEmpty()){
+			try {
+				return (getDateFormat(outputFormat).format(getDateFormat(inputFormat).parse(date))).trim();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+		return date;
+	}
+	
+	public static String formatDateDefaultValue(int inputFormat, String date, int outputFormat, int days){
+		if(date != null && !date.isEmpty()){
+			try {
+				return (getDateFormat(outputFormat).format(getDateFormat(inputFormat).parse(date))).trim();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}else{
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DAY_OF_YEAR, days);
+			Date dateAux = cal.getTime();
+			return getDateFormat(outputFormat).format(dateAux);
+		}
 		return date;
 	}
 	

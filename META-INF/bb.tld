@@ -34,6 +34,12 @@
     </function>
     
     <function>
+        <name>formatDateDefaultValue</name>
+        <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
+        <function-signature>String formatDateDefaultValue(int, java.lang.String, int, int)</function-signature>
+    </function>
+    
+    <function>
         <name>printCardNumber</name>
         <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
         <function-signature>String printCardNumber(java.lang.String)</function-signature>
