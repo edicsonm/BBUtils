@@ -45,4 +45,10 @@
         <function-signature>String printCardNumber(java.lang.String)</function-signature>
     </function>
     
+    <function>
+        <name>nullStringToNULL</name>
+        <function-class>au.com.billigbuddy.utils.BBUtils</function-class>
+        <function-signature>String nullStringToNULL(java.lang.String)</function-signature>
+    </function>
+    
 </taglib>

@@ -76,6 +76,12 @@ public class BBUtils {
 		return String.valueOf(Double.parseDouble(amount) / decimalValue);
 	}
 	
+	public static String nullStringToNULL(String val){
+		if(val.equalsIgnoreCase("NULL"))return null;
+		if(val.isEmpty())return null;
+		return val;
+	}
+	
 	public static String booleanToString(boolean val){
 		if(val)return "0";
 		return "1";
@@ -140,6 +146,9 @@ public class BBUtils {
 			break;
 		case 6:
 			simpleDateFormat =  new SimpleDateFormat("MM/dd/yyyy");
+			break;
+		case 7:
+			simpleDateFormat =  new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 			break;
 		default:
 			simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy");
