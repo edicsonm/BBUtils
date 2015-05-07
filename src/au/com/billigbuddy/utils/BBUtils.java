@@ -166,6 +166,19 @@ public class BBUtils {
 		return maskedMessage;
 	}
 	
+	public static java.sql.Date formatStringToSqlDate(int inputFormat, String stringDate){
+		try {
+			Calendar calendar = Calendar.getInstance();
+			java.util.Date date = getDateFormat(inputFormat).parse(stringDate);
+			calendar.setTime(date);
+			java.sql.Date sqlDate = new java.sql.Date(calendar.getTimeInMillis());
+			return sqlDate;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+	}
+	
 //	public static String configureUserMerchants(ArrayList<UserMerchantVO> listUserMerchants){
 //		if(listUserMerchants == null || listUserMerchants.size() == 0) return null;
 //		String merchants = "";
