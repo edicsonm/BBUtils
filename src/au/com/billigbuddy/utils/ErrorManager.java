@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 public class ErrorManager {
 
 	private static ErrorManager instance = null;
@@ -33,13 +36,6 @@ public class ErrorManager {
 				writer.println(attributes[i]);
 			}
 			writer.close();
-			
-//			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-//			BufferedWriter bw = new BufferedWriter(fw);
-//			bw.write(Error);
-//			bw.write(message);
-//			bw.close();
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -104,6 +100,20 @@ public class ErrorManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void logDailySubscriptionErrorFile(String fileName, JSONObject jSONObject){
+		try {
+			Calendar cal = Calendar.getInstance();
+			File file = new File(ConfigurationSystem.getKey("urlSaveErrorFilesSaveInformationSubscriptions") + fileName +"-"+ cal.getTime());
+			System.out.println(file.getAbsolutePath());
+			PrintWriter writer = new PrintWriter(file, "UTF-8");
+			writer.println(jSONObject.toJSONString());
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void main(String[] args) {
 		manageErrorPaymentPage("Error1","message2","Exception3");

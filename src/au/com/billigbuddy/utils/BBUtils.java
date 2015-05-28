@@ -179,6 +179,11 @@ public class BBUtils {
 		return new java.sql.Date(Calendar.getInstance().getTimeInMillis());
 	}
 	
+	public static String isNullOrEmptyWithDefaulValue(String value, String defaultValue){
+		if(!isNullOrEmpty(value)) return value;
+		 return defaultValue;
+	}
+	
 //	public static String configureUserMerchants(ArrayList<UserMerchantVO> listUserMerchants){
 //		if(listUserMerchants == null || listUserMerchants.size() == 0) return null;
 //		String merchants = "";
